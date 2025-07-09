@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						## Prompt Engineering
+						The ’Grandma Exploit’
+						---
+						### ‘Grandma exploit’ gives users free keys for Windows 11
+						[Original News](https://www.independent.co.uk/tech/chatgpt-microsoft-windows-11-grandma-exploit-b2360213.html)
+						- Someone asked ChatGPT to act as their “grandma” and actually got Windows keys
+						- The AI even kindly said “Hope you sleep well.”
+						- This trick worked on other AIs too, but was quickly patched.
+						- AI can also be fooled by clever social engineering!
+						---
+						## AI Hallucination
+						### [See Example: ChatGPT Hallucination](https://chatgpt.com/share/68669174-3ef8-800f-814c-d72ceff92ffc)
+						---
+						“Prompt engineering is the art of communicating with a generative large language model.”
+						<div style="text-align: right;"> — ChatGPT, 2023</div>
+						---
+						<img src="meme.png" AI_meme>
+						---
+						## Further Discussion
+						- AI Ethics: Defining boundaries and accountability?
+						- Unpredictable Prompts: A risk to system security?
+						- ”Prompt Injection”: A threat to current security frameworks?
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

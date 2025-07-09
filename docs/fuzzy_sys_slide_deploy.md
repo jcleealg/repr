@@ -1,0 +1,233 @@
+###  An Introduction to Fuzzy System
+**A Case Study with the Iris Dataset**
+
+---
+
+#### Iris Dataset Samples 
+| Sepal Length | Sepal Width | Petal Length | Petal Width | Species      |
+|:------------:|:-----------:|:------------:|:-----------:|:------------:|
+| 5.1          | 3.5         | 1.4          | 0.2         | Setosa       |
+| 4.9          | 3.0         | 1.4          | 0.2         | Setosa       |
+| 7.0          | 3.2         | 4.7          | 1.4         | Versicolor   |
+| 6.4          | 3.2         | 4.5          | 1.5         | Versicolor   |
+| 6.3          | 3.3         | 6.0          | 2.5         | Virginica    |
+| 5.8          | 2.7         | 5.1          | 1.9         | Virginica    |
+
+---
+
+#### Data Balance Check
+<p align="center">
+    <img src="Species_Distribution.png" width="400"/>
+</p>
+
+---
+#### Feature Selection: Data Visualization
+
+<table style="width:100%; border: none;">
+<tr style="border: none;">
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_SepalLengthCm_vs_SepalWidthCm.png" width="500"/>
+<br><sub>SL SW</sub>
+</td>
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_SepalLengthCm_vs_PetalLengthCm.png" width="500"/>
+<br><sub>SL PL</sub>
+</td>
+</tr>
+<tr style="border: none;">
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_SepalLengthCm_vs_PetalWidthCm.png" width="500"/>
+<br><sub>SL PW</sub>
+</td>
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_SepalWidthCm_vs_SepalLengthCm.png" width="500"/>
+<br><sub>SW SL</sub>
+</td>
+</tr>
+</table>
+
+---
+
+#### Data Visualization (2/3)
+<table style="width:100%; border: none;">
+<tr style="border: none;">
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_SepalWidthCm_vs_PetalLengthCm.png" width="500"/>
+<br><sub>SW PL</sub>
+</td>
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_SepalWidthCm_vs_PetalWidthCm.png" width="500"/>
+<br><sub>SW PW</sub>
+</td>
+</tr>
+<tr style="border: none;">
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_PetalLengthCm_vs_SepalLengthCm.png" width="500"/>
+<br><sub>PL SL</sub>
+</td>
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_PetalLengthCm_vs_SepalWidthCm.png" width="500"/>
+<br><sub>PL SW</sub>
+</td>
+</tr>
+</table>
+
+---
+
+#### Data Visualization (3/3)
+<table style="width:100%; border: none;">
+<tr style="border: none;">
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_PetalLengthCm_vs_PetalWidthCm.png" width="500"/>
+<br><sub>PL PW</sub>
+</td>
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_PetalWidthCm_vs_PetalLengthCm.png" width="500"/>
+<br><sub>PW PL</sub>
+</td>
+</tr>
+<tr style="border: none;">
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_PetalWidthCm_vs_SepalLengthCm.png" width="500"/>
+<br><sub>PW SL</sub>
+</td>
+<td style="width:50%; text-align:center; border: none;">
+<img src="Scatter_PetalWidthCm_vs_SepalWidthCm.png" width="500"/>
+<br><sub>PW SW</sub>
+</td>
+</tr>
+</table>
+
+---
+#### Species in PL–PW Space
+
+<p align="center">
+    <img src="Scatter_PetalLengthCm_vs_PetalWidthCm.png" width="600"/>
+</p>
+
+<sub>Note on PCA</sub>
+
+--- 
+### Fuzzy System 
+```
+#Define triangular membership functions
+petal_length.automf(3)
+petal_width.automf(3)
+species['setosa'] = fuzz.trimf(species.universe, [0, 0, 1])
+species['versicolor'] = fuzz.trimf(species.universe, [0, 1, 2])
+species['virginica'] = fuzz.trimf(species.universe, [1, 2, 2])
+
+#Construct the Fuzzy rules
+rule1 = ctrl.Rule(petal_length['poor'] & petal_width['poor'], species['setosa'])
+rule2 = ctrl.Rule(petal_length['average'] & petal_width['average'], species['versicolor'])
+rule3 = ctrl.Rule(petal_length['good'] & petal_width['good'], species['virginica'])
+```
+
+---
+
+#### PSO Update Equations
+
+$$
+x_{i}^{(t+1)} = x_{i}^{(t)} + v_{i}^{(t+1)}
+$$
+
+$$
+v_{i}^{(t+1)} = w \cdot v_{i}^{(t)} + c_1 \cdot r_1 \cdot (p_{i}^{best} - x_{i}^{(t)}) + c_2 \cdot r_2 \cdot (g^{best} - x_{i}^{(t)})
+$$
+
+
+**Where:**
+- $v_{i}^{(t)}$: velocity of particle $i$ at iteration $t$
+- $w$: inertia weight (influences previous velocity)
+- $c_1$, $c_2$: cognitive and social learning factors
+- $r_1$, $r_2$: random numbers in [0, 1]
+- $p_{i}^{best}$: best position found by particle $i$
+- $g^{best}$: best position found by the entire swarm
+- $x_{i}^{(t)}$: current position of particle $i$
+
+---
+
+<p align="center">
+  <img src="ParticleSwarmArrowsAnimation.gif" width="600"/>
+</p>
+
+---
+
+#### Membership Functions
+
+<div align="center">
+  <img src="membership_before.png" width="600"/>
+  <br>
+  <img src="membership_after.png" width="600"/>
+</div>
+
+---
+
+
+
+#### Scatter Plot with Bounds
+<p align="center">
+  <img src="Scatter_PetalLengthCm_vs_PetalWidthCm_with_bounds.png" width="600"/>
+</p>
+
+---
+
+### Classification Metrics
+
+| Class (n)      | Precision | Recall | Specificity | Accuracy |
+|:--------------:|:---------:|:------:|:-----------:|:--------:|
+| setosa (10)    |   1.00    |  1.00  |    1.00     |   0.97   |
+| versicolor (10)|   0.91    |  1.00  |    0.95     |   0.97   |
+| virginica (9)  |   1.00    |  0.89  |    1.00     |   0.97   |
+
+Cost time：2.82 seconds
+
+---
+
+### 10-fold Cross Validation
+
+<table style="width:100%; border:none;">
+<tr style="border:none;">
+<td style="width:50%; vertical-align:top; border:none;">
+
+| Fold | Accuracy (%) |
+|:----:|:------------:|
+|  1   |    100.00    |
+|  2   |    100.00    |
+|  3   |    100.00    |
+|  4   |     93.33    |
+|  5   |     86.67    |
+
+</td>
+<td style="width:50%; vertical-align:top; border:none;">
+
+| Fold | Accuracy (%) |
+|:----:|:------------:|
+|  6   |    100.00    |
+|  7   |    100.00    |
+|  8   |    100.00    |
+|  9   |    100.00    |
+| 10   |     92.86    |
+
+</td>
+</tr>
+</table>
+
+
+**10-fold CV average accuracy:** 97.29% ± 4.47%
+
+---
+
+#### It's All About the Function
+
+---
+
+#### Universal Approximation Theorem
+$$
+\forall\, \epsilon > 0, f \in C(K, \mathbb{R}^m),K \subset \mathbb{R}^n\ \text{compact}, \\
+\exists\, F: \mathbb{R}^n \to \mathbb{R}^m\ \text{(NN)}\; \\
+\ni |F(x) - f(x)| < \epsilon,\; \forall x \in K
+$$
+
+---
+

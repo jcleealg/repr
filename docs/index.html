@@ -209,14 +209,89 @@ $$
 ---
 
 ### Classification Metrics
+<div style="font-size:0.7em; max-width:900px; margin:auto;">
+<table style="width:100%; border-collapse:collapse; text-align:center;">
+  <thead>
+	<tr>
+	  <th>Class (n)</th>
+	  <th>Precision</th>
+	  <th>Recall</th>
+	  <th>Specificity</th>
+	  <th>Accuracy</th>
+	  <th>F1 Score</th>
+	</tr>
+  </thead>
+  <tbody>
+	<tr>
+	  <td>setosa (10)</td>
+	  <td>1.00</td>
+	  <td>1.00</td>
+	  <td>1.00</td>
+	  <td>0.97</td>
+	  <td>1.00</td>
+	</tr>
+	<tr>
+	  <td>versicolor (10)</td>
+	  <td>0.91</td>
+	  <td>1.00</td>
+	  <td>0.95</td>
+	  <td>0.97</td>
+	  <td>0.95</td>
+	</tr>
+	<tr>
+	  <td>virginica (9)</td>
+	  <td>1.00</td>
+	  <td>0.89</td>
+	  <td>1.00</td>
+	  <td>0.97</td>
+	  <td>0.94</td>
+	</tr>
+  </tbody>
+</table>
+<div style="margin-top:0.5em;">Cost time：2.82 seconds</div>
+</div>
 
-| Class (n)      | Precision | Recall | Specificity | Accuracy |
-|:--------------:|:---------:|:------:|:-----------:|:--------:|
-| setosa (10)    |   1.00    |  1.00  |    1.00     |   0.97   |
-| versicolor (10)|   0.91    |  1.00  |    0.95     |   0.97   |
-| virginica (9)  |   1.00    |  0.89  |    1.00     |   0.97   |
+---
 
-Cost time：2.82 seconds
+#### Formulas Recap
+<div style="font-size:0.4em; max-width:700px; margin:auto;">
+<ul style="list-style:none; padding-left:0;">
+  <li><b>Precision</b><br>
+	$$
+	\text{Precision} = \frac{TP}{TP + FP}
+	$$
+  </li>
+  <li style="margin-top:0.7em;"><b>Recall</b><br>
+	$$
+	\text{Recall} = \frac{TP}{TP + FN}
+	$$
+  </li>
+  <li style="margin-top:0.7em;"><b>Specificity</b><br>
+	$$
+	\text{Specificity} = \frac{TN}{TN + FP}
+	$$
+  </li>
+  <li style="margin-top:0.7em;"><b>Accuracy</b><br>
+	$$
+	\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+	$$
+  </li>
+  <li style="margin-top:0.7em;"><b>F1 Score</b><br>
+	$$
+	\text{F1 Score} = 2 \cdot \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+	$$
+  </li>
+</ul>
+<ul style="margin-top:0.5em;">
+  <li><b>TP</b>: True Positive</li>
+  <li><b>TN</b>: True Negative</li>
+  <li><b>FP</b>: False Positive</li>
+  <li><b>FN</b>: False Negative</li>
+</ul>
+</div>
+</div>
+</ul>
+</div>
 
 ---
 

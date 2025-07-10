@@ -157,6 +157,7 @@ species['virginica'] = fuzz.trimf(species.universe, [1, 2, 2])
 rule1 = ctrl.Rule(petal_length['poor'] & petal_width['poor'], species['setosa'])
 rule2 = ctrl.Rule(petal_length['average'] & petal_width['average'], species['versicolor'])
 rule3 = ctrl.Rule(petal_length['good'] & petal_width['good'], species['virginica'])
+
 #Consider boundary cases
 rule4 = ctrl.Rule(petal_length['good'] & petal_width['average'], species['virginica'])
 rule5 = ctrl.Rule(petal_length['average'] & petal_width['good'], species['virginica'])
